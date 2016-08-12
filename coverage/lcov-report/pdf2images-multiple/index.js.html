@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for pdf2images-multiple/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">pdf2images-multiple/</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">99.35% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>154/155</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.3% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>52/54</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>19/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>146/146</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">77×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">146×</span>
+<span class="cline-any cline-yes">146×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">146×</span>
+<span class="cline-any cline-yes">120×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">52×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">52×</span>
+<span class="cline-any cline-yes">52×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">var PDFImage = require('pdf-image').PDFImage
+var path = require('path');
+&nbsp;
+function range (begin_int, end_int) {
+	var arr = [],
+	    i = begin_int
+&nbsp;
+	while(i &lt; end_int) {
+		arr.push(i)
+&nbsp;
+		++i
+	}
+&nbsp;
+	return arr
+}
+&nbsp;
+function PDF2Images (pdf_file_path, options) {
+&nbsp;
+	var self = {}
+	self.pdf = {}
+	self.img = {}
+&nbsp;
+	self.ConstructorFunc = function () {
+		self.img.paths = []
+		self.pdf.f_converting = []
+&nbsp;
+		self.img.default_format = 'png'
+&nbsp;
+		self.pdf.file_path = pdf_file_path
+		self.options = options
+&nbsp;
+		self.pdf.gpn_working = false
+&nbsp;
+		self.pdf.file_name_ext = path.basename(self.pdf.file_path)
+		self.pdf.file_name = self.pdf.file_name_ext.split('.')[0]
+		self.pdf.dirname = path.dirname(self.pdf.file_path)
+&nbsp;
+		self.pdf.set_PDFImage()
+&nbsp;
+		self.pdf.set_page_number()
+	}
+&nbsp;
+	self.pdf.convert_page = function (page, callback) {
+		var pdfImg = self.pdf.PDFImage
+		var success_cb, error_cb
+&nbsp;
+		success_cb = (image_path) =&gt; {				
+			self.img.add_path(image_path)
+&nbsp;
+			callback(null, image_path)
+		}
+&nbsp;
+		error_cb = (err) =&gt; {				
+			callback(err)
+		}
+&nbsp;
+		pdfImg.convertPage(page).then(success_cb, error_cb)
+	}
+&nbsp;
+	self.pdf.convert_pages = function (pages_arr, page_cb, final_cb) {
+		var length = pages_arr.length
+&nbsp;
+		if ( ! length ) return final_cb(new Error('pages_arr is empty'))
+&nbsp;
+		var begin_img_path_length = self.img.paths.length
+		var fail = false
+		var callback = (err, image_path) =&gt; {	
+	  	if (err) {
+	  		fail = true
+	  		return page_cb(err)
+	  	}
+&nbsp;
+	  	page_cb(null, image_path)
+&nbsp;
+	  	if (pages_arr.length == 1 || pages_arr.length == (self.img.paths.length - begin_img_path_length)) {
+	  		final_cb(null, self.img.paths)
+	  	}
+	  }
+&nbsp;
+	  var val
+&nbsp;
+		while ( ! fail &amp;&amp; length ) {
+			--length
+			val = pages_arr[length]
+&nbsp;
+			if ( isNaN(val) ) {
+				fail = true
+				return callback(new Error('pages_arr contains invalid value: "' + val + '"'))
+			}
+&nbsp;
+			self.pdf.convert_page(val, callback)
+		}
+	}
+&nbsp;
+	self.pdf.convert = function (page_cb, final_cb) {
+		self.pdf.convert_chunks(page_cb, final_cb)
+	}
+&nbsp;
+	self.pdf.convert_chunks = function (page_cb, final_cb, chunks_numb) {
+		var get_page_cb = (err, pages) =&gt; {
+			if (err) {
+				return final_cb(err)
+			}
+&nbsp;
+			begin = self.pdf.f_converting.length + self.img.paths.length
+&nbsp;
+			var end = begin + chunks_numb
+			end = chunks_numb &amp;&amp; end &lt;= pages ? end : pages
+&nbsp;
+			var pages_chunk_arr = range(begin, end)
+			var convert_one = 1
+			var image_path_number
+&nbsp;
+			self.pdf.add_to_converting(pages_chunk_arr)
+&nbsp;
+			var cc_final_cb = (err, images_paths) =&gt; {		
+				console.log(self.img.paths.length == pages)
+				console.log(self.img.paths.length, pages)
+				if (err) return final_cb(err)
+				if ( self.img.paths.length == pages ) return final_cb(null, self.img.paths)				
+			}
+&nbsp;
+			self.pdf.convert_pages(pages_chunk_arr, (err, image_path) =&gt; {
+				<span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >return page_cb(err)</span>
+&nbsp;
+				image_path_number = self.img.get_image_path_number(image_path)
+&nbsp;
+				self.pdf.remove_to_converting([image_path_number])
+&nbsp;
+				begin = self.pdf.f_converting.length + self.img.paths.length
+&nbsp;
+				if ( begin &lt; pages ) {
+					self.pdf.convert_chunks(page_cb, cc_final_cb, convert_one)
+				}
+&nbsp;
+				page_cb(null, image_path)
+&nbsp;
+			}, cc_final_cb)
+		}
+&nbsp;
+		self.pdf.get_page_number(get_page_cb)
+	}
+&nbsp;
+	self.pdf.set_PDFImage = function () {
+		self.pdf.PDFImage = new PDFImage(self.pdf.file_path, {
+			convertExtension: self.options.ext || self.img.get_default_format(),
+			outputDirectory: self.options.output_dir,
+			convertOptions: self.options.convert_options
+		})
+&nbsp;
+		self.pdf.PDFImage.pdfFileBaseName = self.options.base_name || self.pdf.get_file_name()
+		self.pdf.PDFImage.useGM = self.options.gm || false
+	}
+&nbsp;
+	self.pdf.set_page_number = function (cb) {
+		if ( self.pdf.pages != undefined ) {
+			return cb ? cb() : undefined
+		}
+&nbsp;
+		var callback = (err, pages) =&gt; {
+			if (err &amp;&amp; cb) return cb(err)
+			if (err) return
+&nbsp;
+			self.pdf.pages = pages
+		}
+&nbsp;
+		self.pdf.get_page_number(callback)
+	}
+&nbsp;
+	self.pdf.get_page_number = function (cb) {
+		if ( self.pdf.gpn_working ) return setTimeout(() =&gt; self.pdf.get_page_number(cb), 0)
+		self.pdf.gpn_working = true
+&nbsp;
+		if ( self.pdf.pages != undefined ) { 
+			self.pdf.gpn_working = false
+			return cb(null, self.pdf.pages)
+		}
+&nbsp;
+		var callback = (pages) =&gt; {		
+			cb(null, Number(pages))
+			self.pdf.gpn_working = false
+		}
+		var e_cb = (error) =&gt; {
+			cb(error)
+			self.pdf.gpn_working = false
+		}
+		
+		self.pdf.PDFImage.numberOfPages().then(callback, e_cb)
+&nbsp;
+	}
+&nbsp;
+	self.pdf.get_file_name_ext = function () {
+		return self.pdf.file_name_ext
+	}
+&nbsp;
+	self.pdf.get_file_name = function () {
+		return self.pdf.file_name
+	}
+&nbsp;
+	self.pdf.get_dirname = function () {
+		return self.pdf.dirname
+	}
+&nbsp;
+	self.img.get_default_format = function () {
+		return self.img.default_format
+	}
+&nbsp;
+	self.img.add_path = function (path) {
+		self.add_foo_not_repeat(self.img.paths, path)
+	}
+&nbsp;
+	self.img.get_image_path_number = function (image_path) {
+		var splitted = image_path.split(/-|\./)
+&nbsp;
+		return Number(splitted[splitted.length - 2])
+	}
+&nbsp;
+	self.pdf.add_to_converting = function (pages) {
+		var length = pages.length
+&nbsp;
+		while (length) {
+			--length
+&nbsp;
+			self.add_foo_not_repeat(self.pdf.f_converting, pages[length])
+		}
+	}
+&nbsp;
+	self.pdf.remove_to_converting = function (pages) {
+		if ( ! pages || ! Array.isArray(pages) ) return
+&nbsp;
+		var f_converting_length = self.pdf.f_converting.length
+		var pages_length = pages.length		
+		var new_arr = []
+		var indexs_to_del = []
+		var page_numb
+&nbsp;
+		while (pages_length) {
+			--pages_length
+			indexs_to_del.push(self.pdf.f_converting.indexOf(pages[pages_length]))
+		}
+&nbsp;
+		while (f_converting_length) {
+			--f_converting_length
+			page_numb = self.pdf.f_converting[f_converting_length]
+&nbsp;
+			if ( indexs_to_del.indexOf(f_converting_length) == -1 ) {
+				new_arr.unshift(page_numb)
+			}
+		}
+&nbsp;
+		self.pdf.f_converting = new_arr
+&nbsp;
+	}
+&nbsp;
+	self.add_foo_not_repeat = function (arr, value) {
+		var index = arr.indexOf(value)
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken" >E</span>if ( index === -1 ) {
+			arr.push(value)
+		}
+	}
+&nbsp;
+	self.ConstructorFunc()
+&nbsp;
+	return self
+&nbsp;
+}
+&nbsp;
+module.exports = PDF2Images</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Aug 12 2016 22:47:33 GMT+0000 (UTC)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

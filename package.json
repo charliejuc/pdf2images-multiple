@@ -1,0 +1,36 @@
+{
+  "name": "pdf2images-multiple",
+  "version": "1.0.0",
+  "description": "Simple pdf to images converter in node way.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/*-test.js | tap-spec",
+    "coverage": "istanbul cover tape -- test/*-test.js"
+  },
+  "keywords": [
+    "pdf",
+    "to",
+    "images",
+    "pdf",
+    "image",
+    "images",
+    "convert",
+    "async",
+    "simple",
+    "easy"
+  ],
+  "author": "@Charliejuc <charlieinsous@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.0.1",
+    "pdf-image": "^1.1.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.4",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
+  }
+}
