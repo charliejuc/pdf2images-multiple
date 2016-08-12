@@ -16,7 +16,8 @@ var convert_options = {
 var pdf2images = PDF2Images('./foodir/foo.pdf', {
 	convert_options: convert_options, //optional
 	output_dir: './media/', //optional
-	gm: true //Use GraphicksMagic //optional
+	ext: 'jpg' //optional, png is the default value
+	gm: true //Use GraphicksMagic //optional, false is the default value
 })
 
 pdf2images.pdf.convert((err, image_path) => {
@@ -25,7 +26,7 @@ pdf2images.pdf.convert((err, image_path) => {
 	//Do something when convert full pdf file.
 })
 
-//you can do it by chunks
+//You can do it by chunks
 var chunks = 4
 
 //Convert 4 pages at the same time
@@ -35,11 +36,16 @@ pdf2images.pdf.convert_chunks((err, image_path) => {
 	//Do something when convert full pdf file.
 }, chunks)	
 
-//optionaly you can choose the images to convert by page number
+//Optionaly you can choose the pages to convert by page number
 pdf2images.pdf.convert_pages([0,4,6,7], (err, image_path) => {
 	//Do something when convert every single page.
 }, (err, images_paths) => {
 	//Do something when convert full pdf file.
+})	
+
+//You can convert a single page
+pdf2images.pdf.convert_page(0, (err, image_path) => {
+	//Do something when convert the page.
 })	
 ```
 

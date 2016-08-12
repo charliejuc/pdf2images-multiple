@@ -1,6 +1,6 @@
 {
   "name": "pdf2images-multiple",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Simple pdf to images converter in node way.",
   "main": "index.js",
   "directories": {
@@ -24,6 +24,10 @@
   ],
   "author": "@Charliejuc <charlieinsous@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/charliejuc/pdf2images-multiple.git"
+  },
   "dependencies": {
     "async": "^2.0.1",
     "pdf-image": "^1.1.0"
