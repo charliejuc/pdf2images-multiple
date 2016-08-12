@@ -14,15 +14,36 @@ var convert_options = {
 }
 
 var pdf2images = PDF2Images('./foodir/foo.pdf', {
-	convert_options: convert_options,
-	output_dir: './media/',
-	gm: true //Use GraphicksMagic
+	convert_options: convert_options, //optional
+	output_dir: './media/', //optional
+	gm: true //Use GraphicksMagic //optional
 })
 
 pdf2images.pdf.convert((err, image_path) => {
 	//Do something when convert every single page.
-}, (images_paths) => {
+}, (err, images_paths) => {
 	//Do something when convert full pdf file.
 })
 
+//you can do it by chunks
+var chunks = 4
+
+//Convert 4 pages at the same time
+pdf2images.pdf.convert_chunks((err, image_path) => {
+	//Do something when convert every single page.
+}, (err, images_paths) => {
+	//Do something when convert full pdf file.
+}, chunks)	
+
+//optionaly you can choose the images to convert by page number
+pdf2images.pdf.convert_pages([0,4,6,7], (err, image_path) => {
+	//Do something when convert every single page.
+}, (err, images_paths) => {
+	//Do something when convert full pdf file.
+})	
 ```
+
+##Warning
+
+###This package require to install this packages: imagemagick, ghostscript, poppler-utils and GraphicsMagick
+###On ubuntu or debian exec: apt-get install -y imagemagick ghostscript poppler-utils GraphicsMagick
