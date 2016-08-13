@@ -129,6 +129,42 @@ test('should create pdf2images object properly', function (t) {
 	})
 })
 
+test('should convert pdf to images without options', function (t) {
+	var pdf_file_path = path.join(__dirname, 'test.pdf')
+	var file_ext_name = path.extname(pdf_file_path)
+
+	var pdf2images = PDF2Images(pdf_file_path)
+	var single_conv_funct_counter = 0
+		
+	pdf2images.pdf.convert((err, image_path) => {
+		fs.access(image_path || '', fs.F_OK, err => {
+			t.error(err, 'File ' + image_path + ' created successfully')
+
+			if ( ! err ) fs.unlink(image_path)
+		})
+
+		t.error(err, 'should not be an error in convert single image')
+		t.ok(image_path, 'image_path should be exist')
+		++single_conv_funct_counter
+
+	}, (err, images_paths) => {
+		t.error(err, 'should not be an error in convert final')
+		t.ok(images_paths, 'images_paths should be exist')
+		t.ok(Array.isArray(images_paths), 'images_paths should be an array')
+		t.equals(images_paths.length, single_conv_funct_counter, 'images_paths.length should be equal to single_conv_funct_counter')
+		t.equals(images_paths.length, pdf2images.pdf.pages, 'images_paths.length should be equal to pdf.pages')
+		t.equals(images_paths, pdf2images.img.paths, 'images_paths should be equal to img.paths')
+
+		pdf2images.pdf.set_page_number()
+
+		pdf2images.pdf.set_page_number(err => {
+			t.error(err, 'should not be an error in set_page_number')
+			t.end()
+		})
+		
+	})
+})
+
 test('should convert pdf to images', function (t) {
 	var convert_options = {
 	  '-trim': '',
