@@ -15,7 +15,7 @@ var convert_options = {
 var pdf2images = PDF2Images('./foodir/foo.pdf', {
 	convert_options: convert_options, //optional
 	output_dir: './media/', //optional
-	ext: 'jpg' //optional, png is the default value
+	ext: 'jpg', //optional, png is the default value
 	gm: true //Use GraphicksMagic //optional, false is the default value
 })
 
