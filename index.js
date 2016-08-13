@@ -27,7 +27,7 @@ function PDF2Images (pdf_file_path, options) {
 		self.img.default_format = 'png'
 
 		self.pdf.file_path = pdf_file_path
-		self.options = options
+		self.options = options || {}
 
 		self.pdf.gpn_working = false
 
