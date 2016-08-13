@@ -44,7 +44,7 @@ function PDF2Images (pdf_file_path, options) {
 		var pdfImg = self.pdf.PDFImage
 		var success_cb, error_cb
 
-		success_cb = (image_path) => {				
+		success_cb = (image_path) => {
 			self.img.add_path(image_path)
 
 			callback(null, image_path)
