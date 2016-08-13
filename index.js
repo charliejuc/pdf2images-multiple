@@ -1,5 +1,8 @@
 var PDFImage = require('pdf-image').PDFImage
-var path = require('path');
+var async = require('async')
+var path = require('path')
+var util = require('util')
+var fs = require('fs')
 
 function range (begin_int, end_int) {
 	var arr = [],
@@ -24,6 +27,8 @@ function PDF2Images (pdf_file_path, options) {
 		self.img.paths = []
 		self.pdf.f_converting = []
 
+		self.pdf.exists_cache = undefined
+
 		self.img.default_format = 'png'
 
 		self.pdf.file_path = pdf_file_path
@@ -40,6 +45,22 @@ function PDF2Images (pdf_file_path, options) {
 		self.pdf.set_page_number()
 	}
 
+	self.pdf.exists = function (callback) {
+		if (self.pdf.exists_cache != undefined) return callback(self.pdf.exists_cache)
+
+		var file_exists = true
+
+		fs.access(self.pdf.file_path, fs.F_OK, err => {
+			if (err) {
+				self.pdf.exists_cache = ! file_exists
+				return callback(self.pdf.exists_cache)
+			}
+
+			self.pdf.exists_cache = file_exists
+			callback(file_exists)
+		})
+	}
+
 	self.pdf.convert_page = function (page, callback) {
 		var pdfImg = self.pdf.PDFImage
 		var success_cb, error_cb
@@ -54,7 +75,11 @@ function PDF2Images (pdf_file_path, options) {
 			callback(err)
 		}
 
-		pdfImg.convertPage(page).then(success_cb, error_cb)
+		self.pdf.exists(exists => {
+			if ( ! exists ) return error_cb(new Error(util.format('File "%s" does not exists.', self.pdf.file_path)))
+
+			pdfImg.convertPage(page).then(success_cb, error_cb)
+		})
 	}
 
 	self.pdf.convert_pages = function (pages_arr, page_cb, final_cb) {
@@ -62,34 +87,49 @@ function PDF2Images (pdf_file_path, options) {
 
 		if ( ! length ) return final_cb(new Error('pages_arr is empty'))
 
-		var begin_img_path_length = self.img.paths.length
-		var fail = false
-		var callback = (err, image_path) => {	
-	  	if (err) {
-	  		fail = true
-	  		return page_cb(err)
-	  	}
+		function pdf_exists (cb) {
+			self.pdf.exists(exists => {
+				if ( ! exists ) return cb(new Error(util.format('File "%s" does not exists.', self.pdf.file_path)))
 
-	  	page_cb(null, image_path)
-
-	  	if (pages_arr.length == 1 || pages_arr.length == (self.img.paths.length - begin_img_path_length)) {
-	  		final_cb(null, self.img.paths)
-	  	}
-	  }
-
-	  var val
-
-		while ( ! fail && length ) {
-			--length
-			val = pages_arr[length]
-
-			if ( isNaN(val) ) {
-				fail = true
-				return callback(new Error('pages_arr contains invalid value: "' + val + '"'))
-			}
-
-			self.pdf.convert_page(val, callback)
+				cb()
+			})
 		}
+
+		function convert (cb) {
+			var begin_img_path_length = self.img.paths.length
+			var fail = false
+			var callback = (err, image_path) => {	
+		  	if (err) {
+		  		page_cb(err)
+		  		return cb()
+		  	}
+
+		  	page_cb(null, image_path)
+
+		  	if (pages_arr.length == 1 || pages_arr.length == (self.img.paths.length - begin_img_path_length)) {
+		  		final_cb(null, self.img.paths)
+		  		cb()
+		  	}
+		  }
+
+		  var val
+
+			while ( length ) {
+				--length
+				val = pages_arr[length]
+
+				if ( isNaN(val) ) return callback(new Error(util.format('pages_arr contains invalid value: "%s"', val)))
+
+				self.pdf.convert_page(val, callback)
+			}
+		}
+
+		async.series([
+			pdf_exists,
+			convert
+		], err => {
+			if (err) final_cb(err)
+		})
 	}
 
 	self.pdf.convert = function (page_cb, final_cb) {

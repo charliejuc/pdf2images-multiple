@@ -65,6 +65,9 @@ test('should create pdf2images object properly', function (t) {
 	t.ok(pdf2images.img.get_image_path_number, 'img.get_image_path_number property should exist')
 	func_test(t, pdf2images.img.get_image_path_number, 'img.get_image_path_number property should be a function')
 
+	t.ok(pdf2images.pdf.exists, 'pdf.exists property should exist')
+	func_test(t, pdf2images.pdf.exists, 'pdf.exists property should be a function')
+
 	t.ok(pdf2images.pdf.remove_to_converting, 'pdf.remove_to_converting property should exist')
 	func_test(t, pdf2images.pdf.remove_to_converting, 'pdf.remove_to_converting property should be a function')
 
@@ -117,14 +120,31 @@ test('should create pdf2images object properly', function (t) {
 	t.ok(pdf2images.pdf.get_page_number, 'get_page_number property should exist')
 	func_test(t, pdf2images.pdf.get_page_number, 'get_page_number property should be a function')
 
-	pdf2images.pdf.get_page_number((err, pages) => {
-		t.error(err, 'should not be an error in get_page_number')
-		t.ok(pages, 'pages should be exist')
-		ok_number(t, pages, 'pages should be numeric')
+	function exists_pdf_test (cb) {
+		pdf2images.pdf.exists(exists => {
+			t.ok(exists === true || exists === false, 'exists should be equal to true or false')
+			cb()
+		})
+	}
 
-		t.ok(pdf2images.pdf.pages, 'pdf.pages should be exist')
-		ok_number(t, pdf2images.pdf.pages, 'pdf.pages should be numeric')
+	function gpn_test (cb) {
+		pdf2images.pdf.get_page_number((err, pages) => {
+			t.error(err, 'should not be an error in get_page_number')
+			t.ok(pages, 'pages should be exist')
+			ok_number(t, pages, 'pages should be numeric')
 
+			t.ok(pdf2images.pdf.pages, 'pdf.pages should be exist')
+			ok_number(t, pdf2images.pdf.pages, 'pdf.pages should be numeric')
+
+			cb()
+		})
+	}
+
+	async.series([
+		exists_pdf_test,
+		gpn_test
+	], err => {
+		t.error(err, 'should not be an error in async final callback')
 		t.end()
 	})
 })
@@ -183,7 +203,7 @@ test('should convert pdf to images', function (t) {
 
 	var pdf2images = PDF2Images(pdf_file_path, pdf_options)
 	var single_conv_funct_counter = 0
-		
+
 	pdf2images.pdf.convert((err, image_path) => {
 		fs.access(image_path || '', fs.F_OK, err => {
 			t.error(err, 'File ' + image_path + ' created successfully')
@@ -210,7 +230,7 @@ test('should convert pdf to images', function (t) {
 			t.end()
 		})
 		
-	})
+	})		
 })
 
 test('should convert pdf to images by chunks', function (t) {
@@ -284,6 +304,19 @@ test('should be fail converting pdf to images', function (t) {
 		})
 	}
 
+	function convert_page_test (cb) {
+		pdf2images.pdf.convert_page(0, (err, image_path) => {
+			fs.access(image_path || '', fs.F_OK, err => {
+				t.ok(err, 'File not created')
+			})
+
+			t.ok(err, 'should be an error in convert single image')
+			t.ok( ! image_path, 'image_path should not be exist')
+
+			cb()
+		})	
+	}
+
 	function convert_pages_test (cb) {
 		pdf2images.pdf.convert_pages([1], (err, image_path) => {
 			fs.access(image_path || '', fs.F_OK, err => {
@@ -305,6 +338,29 @@ test('should be fail converting pdf to images', function (t) {
 
 	function s_convert_pages_test (cb) {
 		pdf2images.pdf.convert_pages([-10, 'a'], (err, image_path) => {
+			fs.access(image_path || '', fs.F_OK, err => {
+				t.ok(err, 'File not created')
+			})
+
+			t.ok(err, 'should be an error in convert single image')
+			t.ok( ! image_path, 'image_path should not be exist')
+
+			if (err) cb()
+
+		}, (err, images_paths) => {
+			t.ok(err, 'should be an error in convert final')
+			t.ok( ! images_paths, 'images_paths should not be exist')
+
+			cb()
+		})	
+	}
+
+	function t_convert_pages_test (cb) {
+		var s_pdf_file_path = path.join(__dirname, 'test.pdf')
+
+		var s_pdf2images = PDF2Images(s_pdf_file_path, pdf_options)
+
+		s_pdf2images.pdf.convert_pages([-10, 'a'], (err, image_path) => {
 			fs.access(image_path || '', fs.F_OK, err => {
 				t.ok(err, 'File not created')
 			})
@@ -368,11 +424,14 @@ test('should be fail converting pdf to images', function (t) {
 
 	async.series([
 		spn_test,
+		convert_page_test,
 		convert_pages_test,
 		s_convert_pages_test,
+		t_convert_pages_test,
 		convert_chunks_test,
 		convert_test
 	], err => {
+		t.error(err, 'should not be an error in async final callback')
 		t.end()
 	})
 
