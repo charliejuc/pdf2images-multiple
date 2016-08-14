@@ -50,7 +50,9 @@ pdf2images.pdf.convert_page(0, (err, image_path) => {
 
 ##Warning
 
-###This package require to install this packages: 
-####imagemagick, ghostscript, poppler-utils and GraphicsMagick
+###This module require to install these packages: 
+######imagemagick, ghostscript, poppler-utils and GraphicsMagick
 ###On ubuntu or debian exec: 
-####apt-get install -y imagemagick ghostscript poppler-utils GraphicsMagick
+```
+apt-get install -y imagemagick ghostscript poppler-utils GraphicsMagick
+```
